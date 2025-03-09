@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>机票搜索 - 城市选择</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-white">
+    <div class="max-w-md mx-auto">
+        <!-- 顶部导航栏 -->
+        <div class="p-4 bg-white border-b border-gray-100 flex items-center justify-between">
+            <button class="w-8 h-8 flex items-center justify-center text-gray-600">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <h1 class="text-lg font-medium text-gray-800">选择城市</h1>
+            <div class="w-8"></div> <!-- 占位元素，保持标题居中 -->
+        </div>
+        
+        <!-- 搜索栏 -->
+        <div class="px-4 py-3 bg-white">
+            <div class="relative">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <i class="fas fa-search text-gray-400"></i>
+                </div>
+                <input type="text" class="search-input block w-full pl-10 pr-3 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500 text-gray-800 placeholder-gray-400 text-sm" placeholder="输入城市名称、拼音或机场三字码">
+            </div>
+        </div>
+        
+        <!-- 分类标签 -->
+        <div class="bg-white">
+            <div class="flex border-b border-gray-200 relative">
+                <button id="domesticTab" onclick="showTab('domestic')" class="flex-1 px-4 py-3 text-center text-blue-500 font-medium relative">
+                    国内城市
+                </button>
+                <button id="internationalTab" onclick="showTab('international')" class="flex-1 px-4 py-3 text-center text-gray-500 font-medium relative">
+                    国际城市
+                </button>
+                
+                <!-- 活动标签指示器 -->
+                <div id="tabIndicator" class="tab-indicator absolute bottom-0 left-0 h-0.5 w-1/2 bg-blue-500"></div>
+            </div>
+        </div>
+        
+        <!-- 内容区域 -->
+        <div class="px-4 pt-5 pb-20 h-[640px] overflow-y-auto custom-scrollbar">
+            <!-- 国内航线空白状态 (默认显示) -->
+            <div id="domesticContent" class="flex flex-col items-center justify-center h-full">
+                <!-- 线条风格图标 -->
+                <div class="float-anim w-52 h-52 mb-6 flex items-center justify-center">
+                    <svg class="w-full h-full" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- 飞机线条图标 -->
+                        <circle cx="120" cy="120" r="90" stroke="#E6F0FD" stroke-width="20" />
+                        <path d="M70,120 C70,92.386 92.386,70 120,70" stroke="#3B82F6" stroke-width="2" stroke-linecap="round" />
+                        <path d="M70,120 C70,147.614 92.386,170 120,170" stroke="#3B82F6" stroke-width="2" stroke-linecap="round" />
+                        <path d="M120,70 C147.614,70 170,92.386 170,120" stroke="#3B82F6" stroke-width="2" stroke-linecap="round" />
+                        <path d="M120,170 C147.614,170 170,147.614 170,120" stroke="#3B82F6" stroke-width="2" stroke-linecap="round" />
+                        
+                        <!-- 飞机 -->
+                        <path d="M170,80 L110,105 L60,90 L50,100 L100,120 L50,140 L60,150 L110,135 L170,160 L180,150 L140,120 L180,90 L170,80Z" stroke="#3B82F6" stroke-width="2" fill="none" />
+                        
+                        <!-- 云朵 -->
+                        <path d="M200,170 C209,170 216,163 216,154 C216,149 213,144 209,142 C209,135 204,128 196,128 C193,128 191,129 188,130 C184,121 175,115 165,115 C153,115 142,123 140,134 C133,134 128,140 128,147 C128,154 133,160 140,160 L200,160" stroke="#BFDBFE" stroke-width="2" fill="none" />
+                        
+                        <!-- 点缀元素 -->
+                        <circle cx="50" cy="60" r="5" stroke="#DBEAFE" stroke-width="2" />
+                        <circle cx="180" cy="40" r="3" stroke="#DBEAFE" stroke-width="2" />
+                        <circle cx="200" cy="100" r="4" stroke="#DBEAFE" stroke-width="2" />
+                    </svg>
+                </div>
+                
+                <h3 class="text-lg font-medium text-gray-700 mb-2">暂无国内航线</h3>
+                <p class="text-sm text-gray-500 text-center mb-6 max-w-xs">
+                    当前搜索条件下暂无国内航线可供选择
+                </p>
+                <button onclick="showTab('international')" class="tap-effect switch-button bg-blue-500 text-white px-6 py-2.5 rounded-lg text-sm font-medium flex items-center">
+                    切换国际航线
+                    <i class="fas fa-arrow-right ml-2"></i>
+                </button>
+            </div>
+            
+            <!-- 国际航线空白状态 (默认隐藏) -->
+            <div id="internationalContent" class="hidden flex flex-col items-center justify-center h-full">
+                <!-- 线条风格图标 - 国际航线 -->
+                <div class="float-anim w-52 h-52 mb-6 flex items-center justify-center">
+                    <svg class="w-full h-full" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- 地球线条图标 -->
+                        <circle cx="120" cy="120" r="90" stroke="#EDE9FE" stroke-width="20" />
+                        
+                        <!-- 地球经纬线 -->
+                        <circle cx="120" cy="120" r="70" stroke="#8B5CF6" stroke-width="2" fill="none" />
+                        <ellipse cx="120" cy="120" rx="70" ry="30" stroke="#8B5CF6" stroke-width="2" fill="none" />
+                        <path d="M50,120 L190,120" stroke="#8B5CF6" stroke-width="2" />
+                        <path d="M120,50 L120,190" stroke="#8B5CF6" stroke-width="2" />
+                        
+                        <!-- 飞机路线 -->
+                        <path d="M70,130 Q120,70 180,100" stroke="#8B5CF6" stroke-width="2" stroke-dasharray="4 4" fill="none" />
+                        
+                        <!-- 出发点和到达点 -->
+                        <circle cx="70" cy="130" r="4" fill="#8B5CF6" />
+                        <circle cx="180" cy="100" r="4" fill="#8B5CF6" />
+                        
+                        <!-- 飞机 -->
+                        <path d="M130,85 L140,80 L137,87 L145,90 L130,95 L125,105 L120,90 L130,85Z" stroke="#8B5CF6" stroke-width="2" fill="none" />
+                        
+                        <!-- 装饰性元素 -->
+                        <path d="M40,100 L60,95 L50,115 Z" stroke="#C4B5FD" stroke-width="1" fill="none" />
+                        <path d="M190,140 L200,150 L180,155 Z" stroke="#C4B5FD" stroke-width="1" fill="none" />
+                        <circle cx="160" cy="60" r="5" stroke="#C4B5FD" stroke-width="1" fill="none" />
+                        <circle cx="80" cy="170" r="3" stroke="#C4B5FD" stroke-width="1" fill="none" />
+                    </svg>
+                </div>
+                
+                <h3 class="text-lg font-medium text-gray-700 mb-2">暂无国际航线</h3>
+                <p class="text-sm text-gray-500 text-center mb-6 max-w-xs">
+                    当前搜索条件下暂无国际航线可供选择
+                </p>
+                <button onclick="showTab('domestic')" class="tap-effect switch-button bg-blue-500 text-white px-6 py-2.5 rounded-lg text-sm font-medium flex items-center">
+                    切换国内航线
+                    <i class="fas fa-arrow-right ml-2"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showTab(tabName) {
+            // 更新标签样式
+            if (tabName === 'domestic') {
+                document.getElementById('domesticTab').className = 'flex-1 px-4 py-3 text-center text-blue-500 font-medium relative';
+                document.getElementById('internationalTab').className = 'flex-1 px-4 py-3 text-center text-gray-500 font-medium relative';
+                document.getElementById('tabIndicator').style.transform = 'translateX(0)';
+                
+                // 显示对应内容
+                document.getElementById('domesticContent').classList.remove('hidden');
+                document.getElementById('internationalContent').classList.add('hidden');
+            } else {
+                document.getElementById('domesticTab').className = 'flex-1 px-4 py-3 text-center text-gray-500 font-medium relative';
+                document.getElementById('internationalTab').className = 'flex-1 px-4 py-3 text-center text-blue-500 font-medium relative';
+                document.getElementById('tabIndicator').style.transform = 'translateX(100%)';
+                
+                // 显示对应内容
+                document.getElementById('domesticContent').classList.add('hidden');
+                document.getElementById('internationalContent').classList.remove('hidden');
+            }
+        }
+    </script>
+</body>
+</html> 

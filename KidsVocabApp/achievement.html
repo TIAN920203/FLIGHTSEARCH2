@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>趣学单词 - 成就中心</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-gray-50">
+    <!-- 成就页面内容 -->
+    <div class="max-w-md mx-auto">
+        <!-- 顶部标题 -->
+        <div class="p-4 gradient-success text-white rounded-b-3xl">
+            <h1 class="text-2xl font-bold kid-font text-center">成就中心</h1>
+            <p class="text-sm opacity-90 text-center">看看你学习的成果吧！</p>
+            
+            <!-- 用户等级展示 -->
+            <div class="mt-4 flex items-center justify-center">
+                <div class="trophy-shine w-20 h-20 bg-white/20 rounded-full flex items-center justify-center overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1610216705422-caa3fcb6d158?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3" 
+                         alt="用户头像" 
+                         class="w-16 h-16 object-cover rounded-full">
+                </div>
+            </div>
+            <div class="text-center mt-2">
+                <h3 class="font-bold text-xl">小小学习家</h3>
+                <p class="text-xs opacity-90">等级: 3级</p>
+            </div>
+        </div>
+        
+        <!-- 学习数据统计 -->
+        <div class="p-4">
+            <div class="bg-white rounded-xl shadow-sm p-4">
+                <h2 class="text-lg font-bold mb-4 text-gray-800 text-center">
+                    我的学习数据
+                </h2>
+                
+                <!-- 数据统计 -->
+                <div class="grid grid-cols-3 gap-2 mb-4">
+                    <div class="bg-blue-50 p-3 rounded-xl">
+                        <div class="text-center">
+                            <span class="text-2xl font-bold text-blue-500">38</span>
+                            <p class="text-xs text-gray-500 mt-1">已学单词</p>
+                        </div>
+                    </div>
+                    <div class="bg-green-50 p-3 rounded-xl">
+                        <div class="text-center">
+                            <span class="text-2xl font-bold text-green-500">5</span>
+                            <p class="text-xs text-gray-500 mt-1">学习天数</p>
+                        </div>
+                    </div>
+                    <div class="bg-yellow-50 p-3 rounded-xl">
+                        <div class="text-center">
+                            <span class="text-2xl font-bold text-yellow-500">3</span>
+                            <p class="text-xs text-gray-500 mt-1">获得徽章</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 单词分类统计 -->
+                <div class="mt-4">
+                    <h3 class="text-sm font-semibold text-gray-600 mb-2">单词分类统计</h3>
+                    
+                    <div class="space-y-3">
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-xs text-gray-600">水果类</span>
+                                <span class="text-xs text-gray-600">16/20</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-green-400 h-2 rounded-full" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-xs text-gray-600">动物类</span>
+                                <span class="text-xs text-gray-600">12/25</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-blue-400 h-2 rounded-full" style="width: 48%"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-xs text-gray-600">颜色类</span>
+                                <span class="text-xs text-gray-600">10/10</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-purple-400 h-2 rounded-full" style="width: 100%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 学习徽章 -->
+        <div class="p-4 pt-2">
+            <h2 class="text-lg font-bold mb-3 text-gray-800">
+                <i class="fas fa-award mr-2 text-yellow-500"></i>
+                我的徽章
+            </h2>
+            
+            <div class="bg-white rounded-xl shadow-sm p-4">
+                <!-- 徽章网格 -->
+                <div class="grid grid-cols-3 gap-4">
+                    <!-- 徽章1 - 已获得 -->
+                    <div class="text-center">
+                        <div class="trophy-shine mx-auto w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center">
+                            <i class="fas fa-star text-yellow-500 text-2xl"></i>
+                        </div>
+                        <p class="text-xs font-medium text-gray-800 mt-2">初学者</p>
+                        <p class="text-xs text-gray-500">学习10个单词</p>
+                    </div>
+                    
+                    <!-- 徽章2 - 已获得 -->
+                    <div class="text-center">
+                        <div class="trophy-shine mx-auto w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center">
+                            <i class="fas fa-fire text-blue-500 text-2xl"></i>
+                        </div>
+                        <p class="text-xs font-medium text-gray-800 mt-2">坚持不懈</p>
+                        <p class="text-xs text-gray-500">连续学习3天</p>
+                    </div>
+                    
+                    <!-- 徽章3 - 已获得 -->
+                    <div class="text-center">
+                        <div class="trophy-shine mx-auto w-16 h-16 bg-green-100 rounded-full flex items-center justify-center">
+                            <i class="fas fa-puzzle-piece text-green-500 text-2xl"></i>
+                        </div>
+                        <p class="text-xs font-medium text-gray-800 mt-2">游戏高手</p>
+                        <p class="text-xs text-gray-500">游戏得分80+</p>
+                    </div>
+                    
+                    <!-- 徽章4 - 未获得 -->
+                    <div class="text-center opacity-60">
+                        <div class="mx-auto w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center">
+                            <i class="fas fa-crown text-gray-400 text-2xl"></i>
+                        </div>
+                        <p class="text-xs font-medium text-gray-400 mt-2">单词达人</p>
+                        <p class="text-xs text-gray-400">学习50个单词</p>
+                    </div>
+                    
+                    <!-- 徽章5 - 未获得 -->
+                    <div class="text-center opacity-60">
+                        <div class="mx-auto w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center">
+                            <i class="fas fa-medal text-gray-400 text-2xl"></i>
+                        </div>
+                        <p class="text-xs font-medium text-gray-400 mt-2">学习冠军</p>
+                        <p class="text-xs text-gray-400">连续学习7天</p>
+                    </div>
+                    
+                    <!-- 徽章6 - 未获得 -->
+                    <div class="text-center opacity-60">
+                        <div class="mx-auto w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center">
+                            <i class="fas fa-trophy text-gray-400 text-2xl"></i>
+                        </div>
+                        <p class="text-xs font-medium text-gray-400 mt-2">拼写专家</p>
+                        <p class="text-xs text-gray-400">拼写挑战满分</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 每日学习统计 -->
+        <div class="p-4 pt-2 mb-6">
+            <h2 class="text-lg font-bold mb-3 text-gray-800">
+                <i class="fas fa-chart-line mr-2 text-purple-500"></i>
+                学习记录
+            </h2>
+            
+            <div class="bg-white rounded-xl shadow-sm p-4">
+                <h3 class="text-sm font-semibold text-gray-600 mb-3">最近7天学习情况</h3>
+                
+                <!-- 学习日历 -->
+                <div class="flex justify-between">
+                    <div class="text-center">
+                        <div class="w-9 h-9 rounded-full bg-purple-500 flex items-center justify-center mx-auto">
+                            <span class="text-white text-xs">三</span>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-1">5个</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-9 h-9 rounded-full bg-purple-500 flex items-center justify-center mx-auto">
+                            <span class="text-white text-xs">四</span>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-1">8个</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-9 h-9 rounded-full bg-purple-500 flex items-center justify-center mx-auto">
+                            <span class="text-white text-xs">五</span>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-1">6个</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-9 h-9 rounded-full bg-purple-500 flex items-center justify-center mx-auto">
+                            <span class="text-white text-xs">六</span>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-1">12个</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-9 h-9 rounded-full bg-purple-500 flex items-center justify-center mx-auto">
+                            <span class="text-white text-xs">日</span>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-1">7个</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-9 h-9 rounded-full border-2 border-purple-500 flex items-center justify-center mx-auto">
+                            <span class="text-purple-500 text-xs">一</span>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-1">0个</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-9 h-9 rounded-full bg-purple-100 flex items-center justify-center mx-auto">
+                            <span class="text-purple-500 text-xs">今</span>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-1">进行中</p>
+                    </div>
+                </div>
+                
+                <!-- 下一目标提示 -->
+                <div class="mt-6 bg-purple-50 p-3 rounded-xl border border-purple-100">
+                    <div class="flex">
+                        <div class="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-flag text-purple-500"></i>
+                        </div>
+                        <div class="ml-3">
+                            <p class="text-xs font-medium text-gray-700">下一个目标</p>
+                            <p class="text-xs text-gray-600 mt-1">再学习12个单词获得"单词达人"徽章！</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>趣学单词 - 个人中心</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-gray-50">
+    <!-- 个人中心内容 -->
+    <div class="max-w-md mx-auto">
+        <!-- 顶部用户信息 -->
+        <div class="p-4 gradient-warning text-white rounded-b-3xl">
+            <div class="flex items-center">
+                <div class="w-20 h-20 rounded-full bg-white p-1 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1610216705422-caa3fcb6d158?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3" 
+                         alt="用户头像" 
+                         class="w-full h-full object-cover rounded-full">
+                </div>
+                <div class="ml-4">
+                    <h1 class="text-xl font-bold kid-font">小明</h1>
+                    <p class="text-sm opacity-90">小小学习家 · 3级</p>
+                    <div class="flex items-center mt-1">
+                        <div class="trophy-shine w-6 h-6 bg-white/20 rounded-full flex items-center justify-center mr-1">
+                            <i class="fas fa-star text-yellow-300 text-xs"></i>
+                        </div>
+                        <div class="trophy-shine w-6 h-6 bg-white/20 rounded-full flex items-center justify-center mr-1">
+                            <i class="fas fa-fire text-yellow-300 text-xs"></i>
+                        </div>
+                        <div class="trophy-shine w-6 h-6 bg-white/20 rounded-full flex items-center justify-center">
+                            <i class="fas fa-puzzle-piece text-yellow-300 text-xs"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 简要统计 -->
+            <div class="flex justify-around mt-4 bg-white/10 p-3 rounded-xl">
+                <div class="text-center">
+                    <p class="text-lg font-bold">38</p>
+                    <p class="text-xs opacity-90">已学单词</p>
+                </div>
+                <div class="text-center">
+                    <p class="text-lg font-bold">5</p>
+                    <p class="text-xs opacity-90">学习天数</p>
+                </div>
+                <div class="text-center">
+                    <p class="text-lg font-bold">3/6</p>
+                    <p class="text-xs opacity-90">获得徽章</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 个人设置 -->
+        <div class="p-4">
+            <h2 class="text-lg font-bold mb-3 text-gray-800">
+                <i class="fas fa-user-cog mr-2 text-blue-500"></i>
+                个人设置
+            </h2>
+            
+            <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+                <!-- 设置项目列表 -->
+                <div class="divide-y divide-gray-100">
+                    <!-- 个人信息设置 -->
+                    <div class="p-4 flex items-center justify-between">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-3">
+                                <i class="fas fa-user text-blue-500"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-800">个人信息</h3>
+                                <p class="text-xs text-gray-500">修改昵称、头像等信息</p>
+                            </div>
+                        </div>
+                        <div>
+                            <i class="fas fa-chevron-right text-gray-400"></i>
+                        </div>
+                    </div>
+                    
+                    <!-- 学习设置 -->
+                    <div class="p-4 flex items-center justify-between">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center mr-3">
+                                <i class="fas fa-book-open text-green-500"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-800">学习设置</h3>
+                                <p class="text-xs text-gray-500">每日学习目标、学习提醒</p>
+                            </div>
+                        </div>
+                        <div>
+                            <i class="fas fa-chevron-right text-gray-400"></i>
+                        </div>
+                    </div>
+                    
+                    <!-- 家长控制 -->
+                    <div class="p-4 flex items-center justify-between">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center mr-3">
+                                <i class="fas fa-shield-alt text-purple-500"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-800">家长控制</h3>
+                                <p class="text-xs text-gray-500">使用时间限制、内容管理</p>
+                            </div>
+                        </div>
+                        <div>
+                            <i class="fas fa-chevron-right text-gray-400"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 学习偏好 -->
+        <div class="p-4 pt-2">
+            <h2 class="text-lg font-bold mb-3 text-gray-800">
+                <i class="fas fa-sliders-h mr-2 text-green-500"></i>
+                学习偏好
+            </h2>
+            
+            <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+                <!-- 学习偏好设置 -->
+                <div class="divide-y divide-gray-100">
+                    <!-- 每日单词量 -->
+                    <div class="p-4">
+                        <div class="flex justify-between mb-2">
+                            <h3 class="font-semibold text-gray-800">每日学习单词量</h3>
+                            <span class="text-sm text-blue-500">20词</span>
+                        </div>
+                        <input type="range" min="5" max="30" value="20" step="5" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+                        <div class="flex justify-between mt-1">
+                            <span class="text-xs text-gray-400">5词</span>
+                            <span class="text-xs text-gray-400">30词</span>
+                        </div>
+                    </div>
+                    
+                    <!-- 发音设置 -->
+                    <div class="p-4 flex items-center justify-between">
+                        <div>
+                            <h3 class="font-semibold text-gray-800">自动发音</h3>
+                            <p class="text-xs text-gray-500">学习新单词时自动播放发音</p>
+                        </div>
+                        <div>
+                            <div class="w-12 h-6 bg-green-500 rounded-full flex items-center p-1">
+                                <div class="w-4 h-4 bg-white rounded-full ml-auto"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 学习提醒 -->
+                    <div class="p-4 flex items-center justify-between">
+                        <div>
+                            <h3 class="font-semibold text-gray-800">每日学习提醒</h3>
+                            <p class="text-xs text-gray-500">每天提醒学习新单词</p>
+                        </div>
+                        <div>
+                            <div class="w-12 h-6 bg-green-500 rounded-full flex items-center p-1">
+                                <div class="w-4 h-4 bg-white rounded-full ml-auto"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 家长监控报告 -->
+        <div class="p-4 pt-2 mb-6">
+            <h2 class="text-lg font-bold mb-3 text-gray-800">
+                <i class="fas fa-chart-bar mr-2 text-purple-500"></i>
+                家长监控
+            </h2>
+            
+            <div class="bg-white rounded-xl shadow-sm p-4">
+                <h3 class="text-sm font-semibold text-gray-600 mb-3">本周学习概览</h3>
+                
+                <!-- 学习时间统计 -->
+                <div class="mb-4">
+                    <div class="flex justify-between mb-1">
+                        <span class="text-xs text-gray-600">总学习时间</span>
+                        <span class="text-xs text-gray-600">132分钟</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2">
+                        <div class="bg-purple-400 h-2 rounded-full" style="width: 65%"></div>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-1">目标: 200分钟/周</p>
+                </div>
+                
+                <!-- 学习内容概览 -->
+                <div class="flex justify-between">
+                    <div class="text-center w-1/3">
+                        <div class="w-full h-1 bg-blue-400 rounded-full mb-2"></div>
+                        <p class="text-sm font-medium text-gray-700">38个</p>
+                        <p class="text-xs text-gray-500">学习单词</p>
+                    </div>
+                    <div class="text-center w-1/3">
+                        <div class="w-full h-1 bg-green-400 rounded-full mb-2"></div>
+                        <p class="text-sm font-medium text-gray-700">12次</p>
+                        <p class="text-xs text-gray-500">游戏次数</p>
+                    </div>
+                    <div class="text-center w-1/3">
+                        <div class="w-full h-1 bg-yellow-400 rounded-full mb-2"></div>
+                        <p class="text-sm font-medium text-gray-700">5天</p>
+                        <p class="text-xs text-gray-500">连续学习</p>
+                    </div>
+                </div>
+                
+                <!-- 查看详细报告 -->
+                <div class="mt-4">
+                    <button class="w-full py-2 bg-purple-100 text-purple-600 rounded-lg text-sm font-medium flex items-center justify-center">
+                        <i class="fas fa-file-alt mr-2"></i>
+                        查看详细学习报告
+                    </button>
+                </div>
+            </div>
+            
+            <!-- 关于及支持 -->
+            <div class="mt-6 flex justify-between text-xs text-gray-500">
+                <a href="#" class="flex items-center">
+                    <i class="fas fa-info-circle mr-1"></i>
+                    关于我们
+                </a>
+                <a href="#" class="flex items-center">
+                    <i class="fas fa-question-circle mr-1"></i>
+                    帮助中心
+                </a>
+                <a href="#" class="flex items-center">
+                    <i class="fas fa-cog mr-1"></i>
+                    系统设置
+                </a>
+                <a href="#" class="flex items-center">
+                    <i class="fas fa-sign-out-alt mr-1"></i>
+                    退出登录
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

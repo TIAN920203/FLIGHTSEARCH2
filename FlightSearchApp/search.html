@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>机票搜索</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-gray-50">
+    <div class="max-w-md mx-auto">
+        <!-- 顶部区域 -->
+        <div class="bg-gradient-to-r from-blue-500 to-blue-600 text-white p-4 rounded-b-xl">
+            <div class="flex justify-between items-center">
+                <div>
+                    <h1 class="text-xl font-semibold">机票搜索</h1>
+                    <p class="text-sm opacity-90">高效便捷，轻松出行</p>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <button class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center">
+                        <i class="fas fa-bell text-sm"></i>
+                    </button>
+                    <button class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center">
+                        <i class="fas fa-user text-sm"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- 航程类型选择 -->
+            <div class="mt-5 bg-white/10 p-1 rounded-lg flex">
+                <button class="flex-1 py-2 px-3 rounded-md bg-white text-blue-600 text-sm font-medium">
+                    单程
+                </button>
+                <button class="flex-1 py-2 px-3 rounded-md text-white text-sm font-medium">
+                    往返
+                </button>
+                <button class="flex-1 py-2 px-3 rounded-md text-white text-sm font-medium">
+                    多程
+                </button>
+            </div>
+        </div>
+        
+        <!-- 搜索表单 -->
+        <div class="bg-white -mt-3 mx-4 rounded-xl shadow-lg p-4">
+            <!-- 城市选择 -->
+            <div class="flex items-center justify-between mb-4 relative">
+                <div class="flex-1">
+                    <label class="block text-xs text-gray-500 mb-1">出发城市</label>
+                    <a href="city_select.html" class="block text-gray-800 font-semibold">北京</a>
+                </div>
+                
+                <div class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center z-10">
+                    <i class="fas fa-exchange-alt text-gray-500 transform -rotate-90"></i>
+                </div>
+                
+                <div class="flex-1 text-right">
+                    <label class="block text-xs text-gray-500 mb-1">到达城市</label>
+                    <a href="city_select.html" class="block text-gray-400 font-semibold">请选择</a>
+                </div>
+                
+                <!-- 连接线 -->
+                <div class="absolute left-0 right-0 top-1/2 h-px bg-gray-200 -z-10"></div>
+            </div>
+            
+            <!-- 日期选择 -->
+            <div class="border-t border-gray-100 pt-4 pb-2">
+                <div class="flex items-center">
+                    <div class="w-6 h-6 rounded-full bg-blue-50 flex items-center justify-center mr-2">
+                        <i class="far fa-calendar-alt text-blue-500 text-xs"></i>
+                    </div>
+                    <div class="flex-1">
+                        <label class="block text-xs text-gray-500 mb-1">出发日期</label>
+                        <p class="text-gray-800 font-semibold">2023年6月15日 周四</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 搜索按钮 -->
+            <button onclick="searchFlights()" class="tap-effect bg-blue-500 text-white w-full py-3 rounded-lg mt-4 font-medium">
+                搜索航班
+            </button>
+        </div>
+        
+        <!-- 热门推荐 -->
+        <div class="p-4">
+            <h2 class="text-lg font-semibold text-gray-800 mb-3">热门航线</h2>
+            
+            <div class="grid grid-cols-2 gap-3">
+                <!-- 热门城市卡片 1 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-sm">
+                    <div class="h-24 bg-gray-200 relative">
+                        <img src="https://images.unsplash.com/photo-1505761671935-60b3a7427bad?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3" 
+                             alt="上海" class="w-full h-full object-cover">
+                        <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-transparent to-black/30"></div>
+                        <div class="absolute bottom-2 left-3 text-white font-medium">北京 - 上海</div>
+                    </div>
+                    <div class="p-2">
+                        <div class="flex justify-between items-center">
+                            <div class="text-sm font-medium text-gray-800">¥530起</div>
+                            <div class="text-xs text-gray-500">2小时05分</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 热门城市卡片 2 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-sm">
+                    <div class="h-24 bg-gray-200 relative">
+                        <img src="https://images.unsplash.com/photo-1549871851-25e3afd4d797?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3" 
+                             alt="广州" class="w-full h-full object-cover">
+                        <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-transparent to-black/30"></div>
+                        <div class="absolute bottom-2 left-3 text-white font-medium">北京 - 广州</div>
+                    </div>
+                    <div class="p-2">
+                        <div class="flex justify-between items-center">
+                            <div class="text-sm font-medium text-gray-800">¥780起</div>
+                            <div class="text-xs text-gray-500">3小时20分</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 热门城市卡片 3 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-sm">
+                    <div class="h-24 bg-gray-200 relative">
+                        <img src="https://images.unsplash.com/photo-1552912809-edb59e0b3f76?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3" 
+                             alt="成都" class="w-full h-full object-cover">
+                        <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-transparent to-black/30"></div>
+                        <div class="absolute bottom-2 left-3 text-white font-medium">北京 - 成都</div>
+                    </div>
+                    <div class="p-2">
+                        <div class="flex justify-between items-center">
+                            <div class="text-sm font-medium text-gray-800">¥850起</div>
+                            <div class="text-xs text-gray-500">2小时55分</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 热门城市卡片 4 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-sm">
+                    <div class="h-24 bg-gray-200 relative">
+                        <img src="https://images.unsplash.com/photo-1521187110279-a9e97f3ae437?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3" 
+                             alt="香港" class="w-full h-full object-cover">
+                        <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-transparent to-black/30"></div>
+                        <div class="absolute bottom-2 left-3 text-white font-medium">北京 - 香港</div>
+                    </div>
+                    <div class="p-2">
+                        <div class="flex justify-between items-center">
+                            <div class="text-sm font-medium text-gray-800">¥1280起</div>
+                            <div class="text-xs text-gray-500">3小时45分</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 底部导航栏 -->
+        <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-4 py-2">
+            <div class="flex justify-around">
+                <div class="flex flex-col items-center">
+                    <div class="w-6 h-6 flex items-center justify-center text-blue-500">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <span class="text-xs mt-1 text-blue-500">搜索</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="w-6 h-6 flex items-center justify-center text-gray-400">
+                        <i class="fas fa-ticket-alt"></i>
+                    </div>
+                    <span class="text-xs mt-1 text-gray-400">订单</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="w-6 h-6 flex items-center justify-center text-gray-400">
+                        <i class="fas fa-gift"></i>
+                    </div>
+                    <span class="text-xs mt-1 text-gray-400">优惠</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="w-6 h-6 flex items-center justify-center text-gray-400">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <span class="text-xs mt-1 text-gray-400">我的</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 搜索功能
+        function searchFlights() {
+            // 这里是搜索航班的逻辑
+            // 由于这是原型，我们可以模拟搜索行为，显示一个简单的提示
+            
+            // 获取目的地城市，如果没有选择则提示选择
+            const destinationText = document.querySelector('a[href="city_select.html"].text-gray-400');
+            
+            if (destinationText && destinationText.textContent.includes('请选择')) {
+                // 如果没有选择目的地，跳转到城市选择页面
+                window.location.href = 'city_select.html';
+            } else {
+                // 如果已选择目的地，显示搜索中效果
+                // 在实际项目中，这里会跳转到搜索结果页
+                showSearching();
+            }
+        }
+        
+        // 显示搜索中效果
+        function showSearching() {
+            const searchBtn = document.querySelector('button.bg-blue-500');
+            
+            // 保存原始文本
+            const originalText = searchBtn.innerHTML;
+            
+            // 修改为搜索中状态
+            searchBtn.innerHTML = `<i class="fas fa-spinner fa-spin mr-2"></i> 搜索中...`;
+            searchBtn.disabled = true;
+            searchBtn.classList.add('opacity-80');
+            
+            // 模拟搜索延迟
+            setTimeout(() => {
+                // 恢复原始状态
+                searchBtn.innerHTML = originalText;
+                searchBtn.disabled = false;
+                searchBtn.classList.remove('opacity-80');
+                
+                // 显示一个简单的提示
+                alert('这是一个原型演示，搜索功能尚未实现。在完整版本中，这里会展示航班搜索结果。');
+            }, 1500);
+        }
+    </script>
+</body>
+</html> 

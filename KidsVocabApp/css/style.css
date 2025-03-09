@@ -1,0 +1,137 @@
+/* 少儿学习单词APP自定义样式 */
+
+/* iPhone模拟器样式 */
+.iphone-container {
+    height: 830px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
+}
+
+/* 顶部刘海区域 */
+.notch-container {
+    height: 40px;
+}
+
+/* 学习卡片动画效果 */
+.card-anim-enter {
+    animation: cardEnter 0.5s ease-out forwards;
+}
+
+@keyframes cardEnter {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* 彩色渐变背景 */
+.gradient-primary {
+    background: linear-gradient(135deg, #6B73FF 0%, #4ECDC4 100%);
+}
+
+.gradient-secondary {
+    background: linear-gradient(135deg, #FFB347 0%, #FFCC33 100%);
+}
+
+.gradient-success {
+    background: linear-gradient(135deg, #00B09B 0%, #96C93D 100%);
+}
+
+.gradient-warning {
+    background: linear-gradient(135deg, #FF9966 0%, #FF5E62 100%);
+}
+
+/* 单词卡片样式 */
+.word-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.word-card:hover, .word-card:active {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* 奖杯和徽章闪光效果 */
+.trophy-shine {
+    position: relative;
+    overflow: hidden;
+}
+
+.trophy-shine::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.3) 50%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    transform: rotate(30deg);
+    animation: shine 3s infinite;
+}
+
+@keyframes shine {
+    0% {
+        left: -100%;
+    }
+    20%, 100% {
+        left: 100%;
+    }
+}
+
+/* 学习进度条动画 */
+.progress-anim {
+    transition: width 1s ease-in-out;
+}
+
+/* 游戏按钮悬停效果 */
+.game-btn {
+    transition: all 0.3s ease;
+}
+
+.game-btn:hover, .game-btn:active {
+    transform: scale(1.05);
+}
+
+/* 手指点击动画 */
+.tap-effect {
+    position: relative;
+}
+
+.tap-effect::after {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    opacity: 0;
+    transform: scale(0);
+}
+
+.tap-effect:active::after {
+    animation: tapRipple 0.5s ease-out;
+}
+
+@keyframes tapRipple {
+    0% {
+        transform: scale(0);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+/* 自定义字体样式 - 圆角可爱风格适合儿童 */
+.kid-font {
+    font-family: 'Comic Sans MS', 'Marker Felt', sans-serif;
+} 

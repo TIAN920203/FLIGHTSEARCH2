@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>机票搜索APP - 设计概览</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* 页面特定样式 */
+        .design-container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        
+        /* 缩小版iPhone容器 */
+        .iphone-mini {
+            height: 620px;
+            width: 300px;
+            box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* 内容区域 */
+        .app-content-mini {
+            height: 550px;
+        }
+        
+        .design-title {
+            position: relative;
+        }
+        
+        .design-title::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background-color: #3B82F6;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<button style="position: fixed; bottom: 20px; right: 20px; z-index: 9999; padding: 10px 20px; background-color: #3B82F6; color: white; border: none; border-radius: 5px; cursor: pointer;" onclick="exportAsSVG()">导出为SVG</button>
+
+<script>
+function exportAsSVG() {
+  html2canvas(document.documentElement, {
+    allowTaint: true,
+    useCORS: true,
+    scale: 1
+  }).then(canvas => {
+    const imgData = canvas.toDataURL('image/png');
+    const width = canvas.width;
+    const height = canvas.height;
+    
+    const svg = `
+      <svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}">
+        <image width="${width}" height="${height}" href="${imgData}"/>
+      </svg>
+    `;
+    
+    const blob = new Blob([svg], { type: 'image/svg+xml' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'overview.svg';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  });
+}
+</script>
+<body class="bg-gray-100 p-6">
+    <div class="design-container">
+        <h1 class="text-3xl font-bold text-gray-800 mb-2">机票搜索APP - 设计概览</h1>
+        <p class="text-gray-600 mb-8">所有页面平铺展示，方便一目了然地查看完整设计</p>
+        
+        <!-- 设计布局网格 -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+            <!-- 主页设计 -->
+            <div>
+                <h2 class="design-title text-xl font-semibold text-gray-800 mb-4">搜索页面</h2>
+                <div class="iphone-mini bg-black rounded-[45px] overflow-hidden shadow-2xl relative">
+                    <!-- 顶部挖孔区域 -->
+                    <div class="notch-container absolute top-0 left-0 right-0 h-6 z-30 flex justify-center">
+                        <div class="notch bg-black w-[120px] h-[28px] rounded-b-[15px] flex items-center justify-center">
+                            <div class="camera bg-gray-800 w-2 h-2 rounded-full mx-1"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- 状态栏 -->
+                    <div class="bg-black text-white text-[10px] flex justify-between items-center px-6 pt-1.5 pb-0.5 z-20">
+                        <div>9:41</div>
+                        <div class="flex space-x-1">
+                            <i class="fas fa-signal"></i>
+                            <i class="fas fa-wifi"></i>
+                            <i class="fas fa-battery-full"></i>
+                        </div>
+                    </div>
+                    
+                    <!-- 内容区域 -->
+                    <div class="app-content-mini bg-white overflow-y-auto">
+                        <!-- 搜索页面内容 -->
+                        <!-- 顶部区域 -->
+                        <div class="bg-gradient-to-r from-blue-500 to-blue-600 text-white p-4 rounded-b-xl">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <h1 class="text-xl font-semibold">机票搜索</h1>
+                                    <p class="text-sm opacity-90">高效便捷，轻松出行</p>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <button class="w-7 h-7 rounded-full bg-white/20 flex items-center justify-center">
+                                        <i class="fas fa-bell text-xs"></i>
+                                    </button>
+                                    <button class="w-7 h-7 rounded-full bg-white/20 flex items-center justify-center">
+                                        <i class="fas fa-user text-xs"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <!-- 航程类型选择 -->
+                            <div class="mt-4 bg-white/10 p-1 rounded-lg flex">
+                                <button class="flex-1 py-1.5 px-2 rounded-md bg-white text-blue-600 text-xs font-medium">
+                                    单程
+                                </button>
+                                <button class="flex-1 py-1.5 px-2 rounded-md text-white text-xs font-medium">
+                                    往返
+                                </button>
+                                <button class="flex-1 py-1.5 px-2 rounded-md text-white text-xs font-medium">
+                                    多程
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- 搜索表单 -->
+                        <div class="bg-white -mt-3 mx-4 rounded-xl shadow-md p-4">
+                            <!-- 城市选择 -->
+                            <div class="flex items-center justify-between mb-3 relative">
+                                <div class="flex-1">
+                                    <label class="block text-xs text-gray-500 mb-0.5">出发城市</label>
+                                    <a href="#" class="block text-gray-800 font-semibold text-sm">北京</a>
+                                </div>
+                                
+                                <div class="w-6 h-6 bg-gray-100 rounded-full flex items-center justify-center z-10">
+                                    <i class="fas fa-exchange-alt text-gray-500 transform -rotate-90 text-xs"></i>
+                                </div>
+                                
+                                <div class="flex-1 text-right">
+                                    <label class="block text-xs text-gray-500 mb-0.5">到达城市</label>
+                                    <a href="#" class="block text-gray-400 font-semibold text-sm">请选择</a>
+                                </div>
+                                
+                                <!-- 连接线 -->
+                                <div class="absolute left-0 right-0 top-1/2 h-px bg-gray-200 -z-10"></div>
+                            </div>
+                            
+                            <!-- 日期选择 -->
+                            <div class="border-t border-gray-100 pt-3 pb-2">
+                                <div class="flex items-center">
+                                    <div class="w-5 h-5 rounded-full bg-blue-50 flex items-center justify-center mr-2">
+                                        <i class="far fa-calendar-alt text-blue-500 text-[10px]"></i>
+                                    </div>
+                                    <div class="flex-1">
+                                        <label class="block text-xs text-gray-500 mb-0.5">出发日期</label>
+                                        <p class="text-sm text-gray-800 font-semibold">2023年6月15日 周四</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 搜索按钮 -->
+                            <button class="tap-effect bg-blue-500 text-white w-full py-2 rounded-lg mt-3 text-sm font-medium">
+                                搜索航班
+                            </button>
+                        </div>
+                        
+                        <!-- 热门推荐 -->
+                        <div class="p-4">
+                            <h2 class="text-base font-semibold text-gray-800 mb-3">热门航线</h2>
+                            
+                            <div class="grid grid-cols-2 gap-3">
+                                <!-- 热门城市卡片 1 -->
+                                <div class="bg-white rounded-xl overflow-hidden shadow-sm">
+                                    <div class="h-20 bg-gray-200 relative">
+                                        <img src="https://images.unsplash.com/photo-1505761671935-60b3a7427bad?w=300" 
+                                             alt="上海" class="w-full h-full object-cover">
+                                        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/30"></div>
+                                        <div class="absolute bottom-1 left-2 text-white text-xs font-medium">北京 - 上海</div>
+                                    </div>
+                                    <div class="p-1.5">
+                                        <div class="flex justify-between items-center">
+                                            <div class="text-xs font-medium text-gray-800">¥530起</div>
+                                            <div class="text-[10px] text-gray-500">2小时05分</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- 热门城市卡片 2 -->
+                                <div class="bg-white rounded-xl overflow-hidden shadow-sm">
+                                    <div class="h-20 bg-gray-200 relative">
+                                        <img src="https://images.unsplash.com/photo-1549871851-25e3afd4d797?w=300" 
+                                             alt="广州" class="w-full h-full object-cover">
+                                        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/30"></div>
+                                        <div class="absolute bottom-1 left-2 text-white text-xs font-medium">北京 - 广州</div>
+                                    </div>
+                                    <div class="p-1.5">
+                                        <div class="flex justify-between items-center">
+                                            <div class="text-xs font-medium text-gray-800">¥780起</div>
+                                            <div class="text-[10px] text-gray-500">3小时20分</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 底部导航栏 -->
+                        <div class="absolute bottom-0 left-0 right-0 bg-white border-t border-gray-200 py-1.5 px-2" style="width: 100%;">
+                            <div class="flex justify-around">
+                                <div class="flex flex-col items-center">
+                                    <div class="w-5 h-5 flex items-center justify-center text-blue-500">
+                                        <i class="fas fa-search text-xs"></i>
+                                    </div>
+                                    <span class="text-[10px] mt-0.5 text-blue-500">搜索</span>
+                                </div>
+                                <div class="flex flex-col items-center">
+                                    <div class="w-5 h-5 flex items-center justify-center text-gray-400">
+                                        <i class="fas fa-ticket-alt text-xs"></i>
+                                    </div>
+                                    <span class="text-[10px] mt-0.5 text-gray-400">订单</span>
+                                </div>
+                                <div class="flex flex-col items-center">
+                                    <div class="w-5 h-5 flex items-center justify-center text-gray-400">
+                                        <i class="fas fa-gift text-xs"></i>
+                                    </div>
+                                    <span class="text-[10px] mt-0.5 text-gray-400">优惠</span>
+                                </div>
+                                <div class="flex flex-col items-center">
+                                    <div class="w-5 h-5 flex items-center justify-center text-gray-400">
+                                        <i class="fas fa-user text-xs"></i>
+                                    </div>
+                                    <span class="text-[10px] mt-0.5 text-gray-400">我的</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 底部横条 -->
+                    <div class="home-indicator bg-white flex justify-center pb-1">
+                        <div class="w-24 h-1 bg-gray-400 rounded-full"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 国内城市空白状态 -->
+            <div>
+                <h2 class="design-title text-xl font-semibold text-gray-800 mb-4">国内城市空白状态</h2>
+                <div class="iphone-mini bg-black rounded-[45px] overflow-hidden shadow-2xl relative">
+                    <!-- 顶部挖孔区域 -->
+                    <div class="notch-container absolute top-0 left-0 right-0 h-6 z-30 flex justify-center">
+                        <div class="notch bg-black w-[120px] h-[28px] rounded-b-[15px] flex items-center justify-center">
+                            <div class="camera bg-gray-800 w-2 h-2 rounded-full mx-1"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- 状态栏 -->
+                    <div class="bg-black text-white text-[10px] flex justify-between items-center px-6 pt-1.5 pb-0.5 z-20">
+                        <div>9:41</div>
+                        <div class="flex space-x-1">
+                            <i class="fas fa-signal"></i>
+                            <i class="fas fa-wifi"></i>
+                            <i class="fas fa-battery-full"></i>
+                        </div>
+                    </div>
+                    
+                    <!-- 内容区域 -->
+                    <div class="app-content-mini bg-white overflow-y-auto">
+                        <!-- 城市选择页面内容 -->
+                        <!-- 顶部导航栏 -->
+                        <div class="p-3 bg-white border-b border-gray-100 flex items-center justify-between">
+                            <button class="w-7 h-7 flex items-center justify-center text-gray-600">
+                                <i class="fas fa-arrow-left"></i>
+                            </button>
+                            <h1 class="text-base font-medium text-gray-800">选择城市</h1>
+                            <div class="w-7"></div> <!-- 占位元素，保持标题居中 -->
+                        </div>
+                        
+                        <!-- 搜索栏 -->
+                        <div class="px-3 py-2 bg-white">
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <i class="fas fa-search text-gray-400 text-xs"></i>
+                                </div>
+                                <input type="text" class="search-input block w-full pl-9 pr-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500 text-gray-800 placeholder-gray-400 text-xs" placeholder="输入城市名称、拼音或机场三字码">
+                            </div>
+                        </div>
+                        
+                        <!-- 分类标签 -->
+                        <div class="bg-white">
+                            <div class="flex border-b border-gray-200 relative">
+                                <button class="flex-1 px-4 py-2.5 text-center text-blue-500 text-sm font-medium relative">
+                                    国内城市
+                                </button>
+                                <button class="flex-1 px-4 py-2.5 text-center text-gray-500 text-sm font-medium relative">
+                                    国际城市
+                                </button>
+                                
+                                <!-- 活动标签指示器 -->
+                                <div class="absolute bottom-0 left-0 h-0.5 w-1/2 bg-blue-500"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- 内容区域 - 国内航线空白状态 -->
+                        <div class="px-4 pt-5 pb-20 h-full flex flex-col items-center justify-center">
+                            <!-- 线条风格图标 -->
+                            <div class="float-anim w-48 h-48 mb-6 flex items-center justify-center">
+                                <svg class="w-full h-full" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <!-- 飞机线条图标 -->
+                                    <circle cx="120" cy="120" r="90" stroke="#E6F0FD" stroke-width="20" />
+                                    <path d="M70,120 C70,92.386 92.386,70 120,70" stroke="#3B82F6" stroke-width="2" stroke-linecap="round" />
+                                    <path d="M70,120 C70,147.614 92.386,170 120,170" stroke="#3B82F6" stroke-width="2" stroke-linecap="round" />
+                                    <path d="M120,70 C147.614,70 170,92.386 170,120" stroke="#3B82F6" stroke-width="2" stroke-linecap="round" />
+                                    <path d="M120,170 C147.614,170 170,147.614 170,120" stroke="#3B82F6" stroke-width="2" stroke-linecap="round" />
+                                    
+                                    <!-- 飞机 -->
+                                    <path d="M170,80 L110,105 L60,90 L50,100 L100,120 L50,140 L60,150 L110,135 L170,160 L180,150 L140,120 L180,90 L170,80Z" stroke="#3B82F6" stroke-width="2" fill="none" />
+                                    
+                                    <!-- 云朵 -->
+                                    <path d="M200,170 C209,170 216,163 216,154 C216,149 213,144 209,142 C209,135 204,128 196,128 C193,128 191,129 188,130 C184,121 175,115 165,115 C153,115 142,123 140,134 C133,134 128,140 128,147 C128,154 133,160 140,160 L200,160" stroke="#BFDBFE" stroke-width="2" fill="none" />
+                                    
+                                    <!-- 点缀元素 -->
+                                    <circle cx="50" cy="60" r="5" stroke="#DBEAFE" stroke-width="2" />
+                                    <circle cx="180" cy="40" r="3" stroke="#DBEAFE" stroke-width="2" />
+                                    <circle cx="200" cy="100" r="4" stroke="#DBEAFE" stroke-width="2" />
+                                </svg>
+                            </div>
+                            
+                            <h3 class="text-base font-medium text-gray-700 mb-2">暂无国内航线</h3>
+                            <p class="text-xs text-gray-500 text-center mb-5 max-w-xs">
+                                当前搜索条件下暂无国内航线可供选择
+                            </p>
+                            <button class="tap-effect bg-blue-500 text-white px-5 py-2 rounded-lg text-xs font-medium flex items-center">
+                                切换国际航线
+                                <i class="fas fa-arrow-right ml-1.5"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- 底部横条 -->
+                    <div class="home-indicator bg-white flex justify-center pb-1">
+                        <div class="w-24 h-1 bg-gray-400 rounded-full"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 国际城市空白状态 -->
+            <div>
+                <h2 class="design-title text-xl font-semibold text-gray-800 mb-4">国际城市空白状态</h2>
+                <div class="iphone-mini bg-black rounded-[45px] overflow-hidden shadow-2xl relative">
+                    <!-- 顶部挖孔区域 -->
+                    <div class="notch-container absolute top-0 left-0 right-0 h-6 z-30 flex justify-center">
+                        <div class="notch bg-black w-[120px] h-[28px] rounded-b-[15px] flex items-center justify-center">
+                            <div class="camera bg-gray-800 w-2 h-2 rounded-full mx-1"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- 状态栏 -->
+                    <div class="bg-black text-white text-[10px] flex justify-between items-center px-6 pt-1.5 pb-0.5 z-20">
+                        <div>9:41</div>
+                        <div class="flex space-x-1">
+                            <i class="fas fa-signal"></i>
+                            <i class="fas fa-wifi"></i>
+                            <i class="fas fa-battery-full"></i>
+                        </div>
+                    </div>
+                    
+                    <!-- 内容区域 -->
+                    <div class="app-content-mini bg-white overflow-y-auto">
+                        <!-- 城市选择页面内容 -->
+                        <!-- 顶部导航栏 -->
+                        <div class="p-3 bg-white border-b border-gray-100 flex items-center justify-between">
+                            <button class="w-7 h-7 flex items-center justify-center text-gray-600">
+                                <i class="fas fa-arrow-left"></i>
+                            </button>
+                            <h1 class="text-base font-medium text-gray-800">选择城市</h1>
+                            <div class="w-7"></div> <!-- 占位元素，保持标题居中 -->
+                        </div>
+                        
+                        <!-- 搜索栏 -->
+                        <div class="px-3 py-2 bg-white">
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <i class="fas fa-search text-gray-400 text-xs"></i>
+                                </div>
+                                <input type="text" class="search-input block w-full pl-9 pr-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500 text-gray-800 placeholder-gray-400 text-xs" placeholder="输入城市名称、拼音或机场三字码">
+                            </div>
+                        </div>
+                        
+                        <!-- 分类标签 -->
+                        <div class="bg-white">
+                            <div class="flex border-b border-gray-200 relative">
+                                <button class="flex-1 px-4 py-2.5 text-center text-gray-500 text-sm font-medium relative">
+                                    国内城市
+                                </button>
+                                <button class="flex-1 px-4 py-2.5 text-center text-blue-500 text-sm font-medium relative">
+                                    国际城市
+                                </button>
+                                
+                                <!-- 活动标签指示器 -->
+                                <div class="absolute bottom-0 left-1/2 h-0.5 w-1/2 bg-blue-500"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- 内容区域 - 国际航线空白状态 -->
+                        <div class="px-4 pt-5 pb-20 h-full flex flex-col items-center justify-center">
+                            <!-- 线条风格图标 - 国际航线 -->
+                            <div class="float-anim w-48 h-48 mb-6 flex items-center justify-center">
+                                <svg class="w-full h-full" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <!-- 地球线条图标 -->
+                                    <circle cx="120" cy="120" r="90" stroke="#EDE9FE" stroke-width="20" />
+                                    
+                                    <!-- 地球经纬线 -->
+                                    <circle cx="120" cy="120" r="70" stroke="#8B5CF6" stroke-width="2" fill="none" />
+                                    <ellipse cx="120" cy="120" rx="70" ry="30" stroke="#8B5CF6" stroke-width="2" fill="none" />
+                                    <path d="M50,120 L190,120" stroke="#8B5CF6" stroke-width="2" />
+                                    <path d="M120,50 L120,190" stroke="#8B5CF6" stroke-width="2" />
+                                    
+                                    <!-- 飞机路线 -->
+                                    <path d="M70,130 Q120,70 180,100" stroke="#8B5CF6" stroke-width="2" stroke-dasharray="4 4" fill="none" />
+                                    
+                                    <!-- 出发点和到达点 -->
+                                    <circle cx="70" cy="130" r="4" fill="#8B5CF6" />
+                                    <circle cx="180" cy="100" r="4" fill="#8B5CF6" />
+                                    
+                                    <!-- 飞机 -->
+                                    <path d="M130,85 L140,80 L137,87 L145,90 L130,95 L125,105 L120,90 L130,85Z" stroke="#8B5CF6" stroke-width="2" fill="none" />
+                                    
+                                    <!-- 装饰性元素 -->
+                                    <path d="M40,100 L60,95 L50,115 Z" stroke="#C4B5FD" stroke-width="1" fill="none" />
+                                    <path d="M190,140 L200,150 L180,155 Z" stroke="#C4B5FD" stroke-width="1" fill="none" />
+                                    <circle cx="160" cy="60" r="5" stroke="#C4B5FD" stroke-width="1" fill="none" />
+                                    <circle cx="80" cy="170" r="3" stroke="#C4B5FD" stroke-width="1" fill="none" />
+                                </svg>
+                            </div>
+                            
+                            <h3 class="text-base font-medium text-gray-700 mb-2">暂无国际航线</h3>
+                            <p class="text-xs text-gray-500 text-center mb-5 max-w-xs">
+                                当前搜索条件下暂无国际航线可供选择
+                            </p>
+                            <button class="tap-effect bg-blue-500 text-white px-5 py-2 rounded-lg text-xs font-medium flex items-center">
+                                切换国内航线
+                                <i class="fas fa-arrow-right ml-1.5"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- 底部横条 -->
+                    <div class="home-indicator bg-white flex justify-center pb-1">
+                        <div class="w-24 h-1 bg-gray-400 rounded-full"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 设计说明 -->
+        <div class="mt-16 p-6 bg-white rounded-xl shadow-md">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">设计说明</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-700 mb-3">设计目标</h3>
+                    <p class="text-gray-600 mb-4">这套设计旨在提供一个高保真的机票搜索应用原型，特别关注空白状态的处理方式。在用户没有找到航线时，提供清晰的反馈和引导。</p>
+                    
+                    <h3 class="text-lg font-semibold text-gray-700 mb-3">交互设计</h3>
+                    <ul class="list-disc pl-5 text-gray-600 space-y-2">
+                        <li>标签切换系统：在国内/国际航线之间流畅切换</li>
+                        <li>点击动效：所有按钮都有轻触反馈效果</li>
+                        <li>搜索功能：根据用户输入状态提供适当引导</li>
+                        <li>动画效果：浮动图标提供视觉趣味性</li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-700 mb-3">视觉风格</h3>
+                    <ul class="list-disc pl-5 text-gray-600 space-y-2">
+                        <li>色彩方案：主色调蓝色，辅以紫色和中性色</li>
+                        <li>UI元素：圆角化设计，符合现代移动应用风格</li>
+                        <li>线条图标：简洁明了，传达核心信息</li>
+                        <li>层次感：通过阴影和空间关系创建视觉层次</li>
+                    </ul>
+                    
+                    <h3 class="text-lg font-semibold text-gray-700 mb-3">空白状态处理</h3>
+                    <p class="text-gray-600">空白状态不仅仅是错误提示，而是通过精心设计的图形和引导式文案，将用户引导至正确的解决方案，提供流畅的用户体验。</p>
+                </div>
+            </div>
+        </div>
+        
+        <footer class="mt-12 text-center text-gray-500 text-sm">
+            <p>机票搜索应用原型设计 | 使用HTML+Tailwind CSS构建</p>
+        </footer>
+    </div>
+</body>
+</html> 

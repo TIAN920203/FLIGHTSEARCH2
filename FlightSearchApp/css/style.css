@@ -1,0 +1,124 @@
+/* 机票搜索APP自定义样式 */
+
+/* iPhone模拟器样式 */
+.iphone-container {
+    height: 830px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
+}
+
+/* 顶部刘海区域 */
+.notch-container {
+    height: 40px;
+}
+
+/* 标签切换动画 */
+.tab-transition {
+    transition: all 0.3s ease;
+}
+
+/* 搜索输入框动画 */
+.search-input:focus {
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
+}
+
+/* 搜索图标脉动动画 */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.pulse-anim {
+    animation: pulse 2s infinite;
+}
+
+/* 空白状态插图动画 */
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+.float-anim {
+    animation: float 3s ease-in-out infinite;
+}
+
+/* 切换提示按钮效果 */
+.switch-button {
+    transition: all 0.3s ease;
+}
+
+.switch-button:hover, .switch-button:active {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Tab底部指示器动画 */
+.tab-indicator {
+    transition: transform 0.3s ease;
+}
+
+/* 点击涟漪效果 */
+.tap-effect {
+    position: relative;
+    overflow: hidden;
+}
+
+.tap-effect::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: inherit;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transform: scale(0);
+    transform-origin: center;
+}
+
+.tap-effect:active::after {
+    animation: tapRipple 0.4s ease-out;
+}
+
+@keyframes tapRipple {
+    0% {
+        transform: scale(0);
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+/* 自定义滚动条 */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #999;
+} 

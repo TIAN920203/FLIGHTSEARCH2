@@ -3,9 +3,14 @@
   "version": "1.0.0",
   "description": "机票搜索应用高保真原型",
   "scripts": {
-    "start": "serve"
+    "start": "serve",
+    "build": "echo 'No build step required for static HTML'"
   },
   "dependencies": {
     "serve": "^14.0.0"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": ">=14.0.0"
   }
 } 

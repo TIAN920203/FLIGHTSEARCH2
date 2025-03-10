@@ -1,0 +1,11 @@
+{
+  "name": "flight-search-app",
+  "version": "1.0.0",
+  "description": "机票搜索应用高保真原型",
+  "scripts": {
+    "start": "serve"
+  },
+  "dependencies": {
+    "serve": "^14.0.0"
+  }
+} 
